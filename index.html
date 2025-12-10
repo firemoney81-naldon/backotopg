@@ -1,23 +1,554 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>당신의 돈을 지켜라! 차량보험 호갱 안 되는 절약 가이드 링크</title>
+ 
+  
+  
+  <style>
+        :root {
+            --color-primary: #3498db; /* Blue */
+            --color-secondary: #2ecc71; /* Green */
+            --color-background-soft: #f4f7f6; /* Light Grayish Green */
+            --color-card-bg-1: #eaf2f8; /* Very Light Blue */
+            --color-card-bg-2: #e9f7ef; /* Very Light Green */
+            --color-card-bg-3: #fef9e7; /* Very Light Yellow */
+            --color-text-dark: #2c3e50; /* Dark Blue Gray */
+            --color-text-light: #5d6d7e; /* Medium Blue Gray */
+            --color-accent: #e74c3c; /* Red */
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--color-background-soft);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px 0;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary), #5dade2);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-weight: 300;
+            font-size: 1.1em;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--color-accent);
+            border-bottom: 3px solid var(--color-accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .category-section {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .category-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-background-soft);
+        }
+
+        .site-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 20px;
+        }
+
+        /* 2, 3, 4 컬럼 반응형 레이아웃 */
+        @media (min-width: 768px) {
+            .site-list {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+        
+        .site-item {
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease-in-out;
+            background-color: var(--color-card-bg-1);
+            border-left: 5px solid var(--color-primary);
+            height: 100%; /* Ensure equal height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Styling for different cards */
+        .category-section:nth-child(3n+1) .site-item { background-color: var(--color-card-bg-1); border-left-color: #3498db; }
+        .category-section:nth-child(3n+2) .site-item { background-color: var(--color-card-bg-2); border-left-color: #2ecc71; }
+        .category-section:nth-child(3n+3) .site-item { background-color: var(--color-card-bg-3); border-left-color: #f1c40f; }
+
+        .site-item:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+
+        .site-link {
+            text-decoration: none;
+            font-weight: 700;
+            color: var(--color-primary);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .site-description-link {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-size: 0.95em;
+            line-height: 1.5;
+            display: block;
+            border-radius: 5px;
+            padding: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .site-description-link:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+            color: var(--color-accent);
+        }
+
+        .site-url {
+            display: block;
+            font-size: 0.8em;
+            color: var(--color-text-light);
+            margin-top: 10px;
+            word-break: break-all;
+        }
+
+        footer {
+            background-color: var(--color-text-dark);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "당신의 돈을 지켜라! 차량보험 호갱 안 되는 절약 가이드 링크",
+      "description": "쏘나타, 제네시스, 벤츠 등 차종별 보험료, 다이렉트 견적, 특약, 연령별 보험료 등 모든 자동차 보험 정보를 한 곳에서 비교하고 조회할 수 있는 플랫폼입니다.",
+      "url": "https://[YOUR_DOMAIN_HERE]/insurance-comparison-platform", 
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://[YOUR_DOMAIN_HERE]/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "http://directcarpromotq.cafe24.com/",
+            "name": "다이렉트자동차보험비교견적"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://bohumpromotionp.cafe24.com/",
+            "name": "자동차보험순위"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://carnpromotione.withusdone.com/",
+            "name": "중고차보험"
+          }
+          /* 여기에 무작위로 뽑은 사이트 중 10~20개를 추가하여 itemListElement를 구성합니다. */
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "자동차보험 통합 비교 플랫폼", 
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://[YOUR_DOMAIN_HERE]/logo.png" 
+        }
+      }
+    }
+    </script>
+
+    <header>
+        <h1>당신의 돈을 지켜라! 차량보험 호갱 안 되는 절약 가이드 링크</h1>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">주요 보험 정보 카테고리</h2>
+
+        <section id="category-4" class="category-section">
+            <h3 class="category-header">✅ 비교 견적/다이렉트 보험 - 합리적인 선택의 시작</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="http://m.directcarpromotq.cafe24.com/" target="_blank" class="site-link">다이렉트자동차보험비교견적</a>
+                    <a href="http://m.directcarpromotq.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">수많은 보험사의 견적을 단 한 번의 클릭으로 압축 비교하는 최강의 다이렉트 솔루션.</a>
+                    <span class="site-url">http://m.directcarpromotq.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotiond.cafe24.com/" target="_blank" class="site-link">자동차보험비교견적</a>
+                    <a href="https://bohumpromotiond.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">시간 낭비 없는 효율적인 비교견적으로 숨겨진 할인율을 찾아내는 스마트 보험 설계 도우미.</a>
+                    <span class="site-url">https://bohumpromotiond.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmoy.withusdone.com/" target="_blank" class="site-link">차보험비교사이트</a>
+                    <a href="https://directipmoy.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">수십 개의 보험 상품을 한눈에 펼쳐놓고 분석하여 최저가 보험을 발굴하는 빅데이터 기반 사이트.</a>
+                    <span class="site-url">https://directipmoy.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmoj.withusdone.com/" target="_blank" class="site-link">다이렉트자동차보험저렴한곳</a>
+                    <a href="https://directipmoj.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">불필요한 수수료를 걷어내고 가장 저렴한 다이렉트 보험 상품만을 엄선해 보여주는 초절약 가이드.</a>
+                    <span class="site-url">https://directipmoj.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directcarpromotw.cafe24.com/" target="_blank" class="site-link">자동차보험 다이렉트 비교</a>
+                    <a href="https://directcarpromotw.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">복잡한 과정을 생략하고 바로 본론으로 들어가 가장 알찬 다이렉트 상품을 비교해주는 신속 시스템.</a>
+                    <span class="site-url">https://directcarpromotw.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotionm.cafe24.com/" target="_blank" class="site-link">자동차보험비교견적사이트</a>
+                    <a href="https://bohumpromotionm.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">수많은 선택지 속에서 가장 현명한 답을 찾아주는 인공지능 기반의 자동차 보험 비교 전문 포털.</a>
+                    <span class="site-url">https://bohumpromotionm.cafe24.com/</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="category-1" class="category-section">
+            <h3 class="category-header">🚗 국산 인기 모델별 보험료 - 내 차 보험료 즉시 확인</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="http://carmpromotionv.withusdone.com/" target="_blank" class="site-link">쏘나타보험료</a>
+                    <a href="http://carmpromotionv.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">국민 중형 세단 쏘나타의 모델과 연식에 따른 최신 보험료 변동 추이를 분석합니다.</a>
+                    <span class="site-url">http://carmpromotionv.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotiono.withusdone.com/" target="_blank" class="site-link">싼타페보험료</a>
+                    <a href="https://carnpromotiono.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">패밀리 SUV의 대명사 싼타페의 다양한 특약 적용 후 최종 보험료를 시뮬레이션 해보세요.</a>
+                    <span class="site-url">https://carnpromotiono.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotioni.withusdone.com/" target="_blank" class="site-link">스포티지보험료</a>
+                    <a href="https://carnpromotioni.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">개성 강한 디자인의 스포티지, 예상치 못한 보험료 절약 팁을 여기서 발견하세요.</a>
+                    <span class="site-url">https://carnpromotioni.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionj.withusdone.com/" target="_blank" class="site-link">K7보험료</a>
+                    <a href="https://carnpromotionj.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">준대형 세단 K7의 품격에 맞는 합리적인 보험료를 실시간으로 조회하고 최적화합니다.</a>
+                    <span class="site-url">https://carnpromotionj.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionw.withusdone.com/" target="_blank" class="site-link">쏘렌토보험료</a>
+                    <a href="https://carnpromotionw.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">꾸준한 인기의 쏘렌토, 다양한 운전자 조건에 따른 보험료 견적을 꼼꼼하게 확인하세요.</a>
+                    <span class="site-url">https://carnpromotionw.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotiong.withusdone.com/" target="_blank" class="site-link">레이보험료</a>
+                    <a href="https://carnpromotiong.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">경차 레이의 경제성을 극대화하는 맞춤형 자동차 보험료 비교 서비스를 제공합니다.</a>
+                    <span class="site-url">https://carnpromotiong.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionp.withusdone.com/" target="_blank" class="site-link">투싼보험료</a>
+                    <a href="https://carnpromotionp.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">스타일리시한 투싼 오너를 위한, 가장 저렴하면서도 보장은 확실한 보험료를 찾아드립니다.</a>
+                    <span class="site-url">https://carnpromotionp.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://cargpromotiona.withusdone.com/" target="_blank" class="site-link">스파크자동차보험</a>
+                    <a href="https://cargpromotiona.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">가성비 최강 스파크, 보험료까지 알뜰하게 절약할 수 있는 숨겨진 정보를 공개합니다.</a>
+                    <span class="site-url">https://cargpromotiona.withusdone.com/</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="category-2" class="category-section">
+            <h3 class="category-header">✨ 프리미엄/수입차 보험료 - 고가 차량의 특화된 보험 솔루션</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="https://carnpromotionl.withusdone.com/" target="_blank" class="site-link">제네시스G80보험료</a>
+                    <a href="https://carnpromotionl.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">럭셔리 세단 G80의 가치를 완벽하게 보장하는 맞춤형 보험료 견적을 확인하세요.</a>
+                    <span class="site-url">https://carnpromotionl.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionm.withusdone.com/" target="_blank" class="site-link">BMW보험료</a>
+                    <a href="https://carnpromotionm.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">BMW의 모든 시리즈에 대한 전문적인 보험료 분석과 최적의 다이렉트 비교 견적.</a>
+                    <span class="site-url">https://carnpromotionm.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionn.withusdone.com/" target="_blank" class="site-link">벤츠보험료</a>
+                    <a href="https://carnpromotionn.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">벤츠 오너의 품격을 지켜줄, 수리비 걱정 없는 최고 수준의 보장과 합리적 보험료.</a>
+                    <span class="site-url">https://carnpromotionn.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionk.withusdone.com/" target="_blank" class="site-link">포르쉐보험료</a>
+                    <a href="https://carnpromotionk.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">고성능 스포츠카 포르쉐를 위한 프리미엄 자차 보장 및 특화된 보험료 비교 서비스.</a>
+                    <span class="site-url">https://carnpromotionk.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotiont.withusdone.com/" target="_blank" class="site-link">아우디A6보험료</a>
+                    <a href="https://carnpromotiont.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">아우디 A6의 정교한 가치를 완벽하게 커버하는 보험료 절약 노하우를 공개합니다.</a>
+                    <span class="site-url">https://carnpromotiont.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotionz.withusdone.com/" target="_blank" class="site-link">외제차보험료</a>
+                    <a href="https://carvpromotionz.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">수입차 운전자를 위한 특별 할인과 높은 자차 보장률을 갖춘 보험 상품만 모아 비교합니다.</a>
+                    <span class="site-url">https://carvpromotionz.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotiont.withusdone.com/" target="_blank" class="site-link">벤츠자동차보험</a>
+                    <a href="https://carvpromotiont.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">벤츠 전문 수리 서비스와 연계된 특약으로 마음 편한 드라이빙을 위한 보험을 설계합니다.</a>
+                    <span class="site-url">https://carvpromotiont.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotionm.withusdone.com/" target="_blank" class="site-link">렉서스보험료</a>
+                    <a href="https://carvpromotionm.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">렉서스 차량의 정숙함처럼 안정적이고 신뢰도 높은 보험 견적을 제시합니다.</a>
+                    <span class="site-url">https://carvpromotionm.withusdone.com/</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="category-3" class="category-section">
+            <h3 class="category-header">⚡ 친환경차/특수차 보험 - 미래 모빌리티와 특수 목적 차량 보험</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="https://bohumpromotiono.cafe24.com/" target="_blank" class="site-link">전기차보험료</a>
+                    <a href="https://bohumpromotiono.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">배터리 특약, 충전 중 사고 보장 등 전기차 운전자에게 특화된 보험료 비교 정보.</a>
+                    <span class="site-url">https://bohumpromotiono.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotionb.withusdone.com/" target="_blank" class="site-link">하이브리드보험료</a>
+                    <a href="https://carvpromotionb.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">연비 절약만큼 보험료도 절약할 수 있는 하이브리드 차량 특화 보험 비교 견적.</a>
+                    <span class="site-url">https://carvpromotionb.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmot.withusdone.com/" target="_blank" class="site-link">캠핑카보험</a>
+                    <a href="https://directipmot.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">특별한 여가 활동을 위한 캠핑카, 내부 시설물 보장까지 고려한 전용 보험 상품을 찾아드립니다.</a>
+                    <span class="site-url">https://directipmot.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotionu.withusdone.com/" target="_blank" class="site-link">아이오닉5보험료</a>
+                    <a href="https://carvpromotionu.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">미래형 디자인 아이오닉5, 고전압 배터리 보장 특약을 포함한 최적의 보험료 견적.</a>
+                    <span class="site-url">https://carvpromotionu.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotiono.withusdone.com/" target="_blank" class="site-link">화물차보험료</a>
+                    <a href="https://carvpromotiono.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">상업용/개인용 화물차의 운송 목적에 맞춘 책임보험과 종합보험료를 정확히 산출합니다.</a>
+                    <span class="site-url">https://carvpromotiono.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carmpromotiony.withusdone.com/" target="_blank" class="site-link">스포티지하이브리드보험료</a>
+                    <a href="https://carmpromotiony.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">친환경과 스타일을 모두 잡은 스포티지 하이브리드, 보험료 할인 요소들을 집중 분석합니다.</a>
+                    <span class="site-url">https://carmpromotiony.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotionc.withusdone.com/" target="_blank" class="site-link">아이오닉6보험료</a>
+                    <a href="https://carvpromotionc.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">유선형 디자인 아이오닉6, 전용 보험 상품의 예상 비용과 특약을 상세 비교합니다.</a>
+                    <span class="site-url">https://carvpromotionc.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionz.withusdone.com/" target="_blank" class="site-link">넥쏘보험료</a>
+                    <a href="https://carnpromotionz.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">수소차 넥쏘 운전자를 위한 특별 할인과 보장 범위를 제공하는 보험료 조회 서비스.</a>
+                    <span class="site-url">https://carnpromotionz.withusdone.com/</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="category-6" class="category-section">
+            <h3 class="category-header">👪 운전자 조건/특약/가입 - 나만의 맞춤 보험 설계</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="https://carnpromotionc.withusdone.com/" target="_blank" class="site-link">자동차보험부부한정</a>
+                    <a href="https://carnpromotionc.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">부부 운전자만을 위한 가장 저렴한 보험료를 산출하고, 특약 적용 여부를 확인하세요.</a>
+                    <span class="site-url">https://carnpromotionc.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotiond.withusdone.com/" target="_blank" class="site-link">자동차보험블랙박스할인</a>
+                    <a href="https://carnpromotiond.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">블랙박스 설치로 보험료를 얼마나 할인받을 수 있는지 정확한 계산으로 보여줍니다.</a>
+                    <span class="site-url">https://carnpromotiond.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotiona.withusdone.com/" target="_blank" class="site-link">자동차보험특약</a>
+                    <a href="https://carnpromotiona.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">다양하고 복잡한 자동차 보험 특약 중 내게 꼭 필요한 것만 골라 추천하는 맞춤형 가이드.</a>
+                    <span class="site-url">https://carnpromotiona.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmom.withusdone.com/" target="_blank" class="site-link">자차보험가입</a>
+                    <a href="https://directipmom.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">필수가 아닌 선택, 자차 보험의 보장 범위와 최적의 가입 조건을 상세히 안내합니다.</a>
+                    <span class="site-url">https://directipmom.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carnpromotionh.withusdone.com/" target="_blank" class="site-link">중고차보험가입</a>
+                    <a href="https://carnpromotionh.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">새 차와는 다른 중고차의 보험 가입 기준, 절차, 그리고 숨겨진 할인 정보를 제공합니다.</a>
+                    <span class="site-url">https://carnpromotionh.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmop.withusdone.com/" target="_blank" class="site-link">자동차보험1년</a>
+                    <a href="https://directipmop.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">가장 일반적인 1년 단위 자동차 보험 상품을 가장 저렴한 가격으로 가입하는 비결을 공개합니다.</a>
+                    <span class="site-url">https://directipmop.withusdone.com/</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="category-7" class="category-section">
+            <h3 class="category-header">💰 보험료 산출/조회/기준 - 정확한 내 보험료 확인</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="https://bohumpromotiona.cafe24.com/" target="_blank" class="site-link">자동차보험료계산</a>
+                    <a href="https://bohumpromotiona.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">개인의 운전 경력, 차량 모델, 나이 등 모든 변수를 반영한 실시간 보험료 계산기.</a>
+                    <span class="site-url">https://bohumpromotiona.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmoh.withusdone.com/" target="_blank" class="site-link">자동차보험료확인</a>
+                    <a href="https://directipmoh.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">현재 가입된 보험의 갱신 보험료부터 타 보험사의 예상 견적까지 한 번에 확인하는 서비스.</a>
+                    <span class="site-url">https://directipmoh.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotionc.cafe24.com/" target="_blank" class="site-link">자동차보험료1년</a>
+                    <a href="https://bohumpromotionc.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">1년 보험료 총액을 가장 저렴하게 책정하는 보험사 순위와 절약 방법을 제시합니다.</a>
+                    <span class="site-url">https://bohumpromotionc.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="http://directcarpromoti.cafe24.com/" target="_blank" class="site-link">첫자동차보험료</a>
+                    <a href="http://directcarpromoti.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">운전 초보자에게 가장 부담이 적고 보장이 확실한 첫 자동차 보험료 설계 솔루션.</a>
+                    <span class="site-url">http://directcarpromoti.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmow.withusdone.com/" target="_blank" class="site-link">자동차보험비용</a>
+                    <a href="https://directipmow.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">보험료 외 숨겨진 비용까지 투명하게 공개하고, 총 지출을 최소화하는 비법을 알려드립니다.</a>
+                    <span class="site-url">https://directipmow.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://carvpromotionw.withusdone.com/" target="_blank" class="site-link">자동차보험요율</a>
+                    <a href="https://carvpromotionw.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">운전자의 안전 운전 습관이 보험료에 미치는 영향, 할인/할증 요율을 심층 분석합니다.</a>
+                    <span class="site-url">https://carvpromotionw.withusdone.com/</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="category-8" class="category-section">
+            <h3 class="category-header">👶 연령/경력별 보험 - 20대부터 경력 인정까지 맞춤 견적</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="https://bohumpromotione.cafe24.com/" target="_blank" class="site-link">20대자동차보험료</a>
+                    <a href="https://bohumpromotione.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">보험료 부담이 큰 20대 운전자를 위한 가장 현실적이고 저렴한 보험료 절약 전략.</a>
+                    <span class="site-url">https://bohumpromotione.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotionq.cafe24.com/" target="_blank" class="site-link">20살자동차보험료</a>
+                    <a href="https://bohumpromotionq.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">만 20세 신규 운전자가 최소한의 비용으로 최대의 보장을 받을 수 있는 보험료 비교.</a>
+                    <span class="site-url">https://bohumpromotionq.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotionk.cafe24.com/" target="_blank" class="site-link">자동차보험 만26세</a>
+                    <a href="https://bohumpromotionk.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">만 26세 기준 보험료 할인 폭이 확대되는 시점, 가장 유리한 보험 가입 시기를 분석합니다.</a>
+                    <span class="site-url">https://bohumpromotionk.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotionr.cafe24.com/" target="_blank" class="site-link">자동차보험 경력인정</a>
+                    <a href="https://bohumpromotionr.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">해외 운전, 군 운전 등 숨겨진 운전 경력을 인정받아 보험료를 할인받는 노하우.</a>
+                    <span class="site-url">https://bohumpromotionr.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmof.withusdone.com/" target="_blank" class="site-link">자동차보험장애인</a>
+                    <a href="https://directipmof.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">장애인 복지 카드 소지자를 위한 특별 할인 및 세금 혜택을 반영한 보험료 비교.</a>
+                    <span class="site-url">https://directipmof.withusdone.com/</span>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="category-9" class="category-section">
+            <h3 class="category-header">🛡️ 책임/종합/필수 정보 - 보험의 종류와 재가입 정보</h3>
+            <ul class="site-list">
+                <li class="site-item">
+                    <a href="https://directcarpromotv.cafe24.com/" target="_blank" class="site-link">자동차책임보험가격</a>
+                    <a href="https://directcarpromotv.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">의무 가입 항목인 책임보험의 최저가격을 비교하고, 보장 범위의 차이를 명확히 안내합니다.</a>
+                    <span class="site-url">https://directcarpromotv.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="http://directcarpromotb.cafe24.com/" target="_blank" class="site-link">자동차종합보험가격</a>
+                    <a href="http://directcarpromotb.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">책임보험을 넘어선 완벽한 보장, 종합보험의 가격 경쟁력을 비교하고 분석합니다.</a>
+                    <span class="site-url">http://directcarpromotb.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotiont.cafe24.com/" target="_blank" class="site-link">자동차보험종류</a>
+                    <a href="https://bohumpromotiont.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">대인/대물/자손/자차 등 복잡한 자동차 보험의 종류와 그 차이를 명쾌하게 설명합니다.</a>
+                    <span class="site-url">https://bohumpromotiont.cafe24.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://directipmod.withusdone.com/" target="_blank" class="site-link">자동차보험재가입</a>
+                    <a href="https://directipmod.withusdone.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">기존 보험사와의 갱신과 타사 가입을 비교하여 재가입 시 놓치지 말아야 할 할인 정보를 제공합니다.</a>
+                    <span class="site-url">https://directipmod.withusdone.com/</span>
+                </li>
+                <li class="site-item">
+                    <a href="https://bohumpromotions.cafe24.com/" target="_blank" class="site-link">자동차보험조회</a>
+                    <a href="https://bohumpromotions.cafe24.com/" target="_blank" class="site-description-link" title="새 탭으로 열기">나의 차량과 운전자 정보를 입력하여 모든 보험사의 견적을 실시간으로 조회하는 간편 서비스.</a>
+                    <span class="site-url">https://bohumpromotions.cafe24.com/</span>
+                </li>
+            </ul>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 자동차 보험 통합 비교 플랫폼. All rights reserved.</p>
+        <p>본 페이지는 보험료 비교 견적 서비스를 위한 정보 제공 목적으로 제작되었습니다.</p>
+    </footer>
+
+</body>
 </html>
